@@ -87,7 +87,7 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'})
             res.end(JSON.stringify({"ok": "ok"}))
         } catch (e) {
-            res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'})
+            res.writeHead(500, {'Content-Type': 'application/json; charset=utf-8'})
             res.end(JSON.stringify({"ok": "not ok"}))
         }
     } else {
