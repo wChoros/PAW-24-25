@@ -58,34 +58,33 @@ const server = http.createServer((req, res) => {
 
         //     if the given file path is a file,then read the file
         fs.readFile(file_path, (err, data) => {
-                if (err) {
-                    if (err.code === "ENOENT") {
-                        res.writeHead(404, {"Content-Type": "text/plain"})
-                        res.end("404 Not Found")
-                    } else {
-                        res.writeHead(500, {"Content-Type": "text/plain"})
-                        res.end("500 Internal Server Error")
-                    }
+            if (err) {
+                if (err.code === "ENOENT") {
+                    res.writeHead(404, {"Content-Type": "text/plain"})
+                    res.end("404 Not Found")
                 } else {
-                    let content_type = "text/plain"
-                    if (file_extension === "html") {
-                        content_type = "text/html"
-                    } else if (file_extension === "css") {
-                        content_type = "text/css"
-                    } else if (file_extension === "js") {
-                        content_type = "text/javascript"
-                    } else if (file_extension === "jpg" || file_extension === "jpeg") {
-                        content_type = "image/jpeg"
-                    } else if (file_extension === "png") {
-                        content_type = "image/png"
-                    } else if (file_extension === "pdf") {
-                        content_type = "image/gif"
-                    }
-                    res.writeHead(200, {"Content-Type": content_type + file_extension})
-                    res.end(data)
+                    res.writeHead(500, {"Content-Type": "text/plain"})
+                    res.end("500 Internal Server Error")
                 }
+            } else {
+                let content_type = "text/plain"
+                if (file_extension === "html") {
+                    content_type = "text/html"
+                } else if (file_extension === "css") {
+                    content_type = "text/css"
+                } else if (file_extension === "js") {
+                    content_type = "text/javascript"
+                } else if (file_extension === "jpg" || file_extension === "jpeg") {
+                    content_type = "image/jpeg"
+                } else if (file_extension === "png") {
+                    content_type = "image/png"
+                } else if (file_extension === "pdf") {
+                    content_type = "image/gif"
+                }
+                res.writeHead(200, {"Content-Type": content_type + file_extension})
+                res.end(data)
             }
-        )
+        })
     }
 })
 
