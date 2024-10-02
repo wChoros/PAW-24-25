@@ -1,5 +1,6 @@
 import * as http from "node:http"
 import * as fs from "node:fs"
+import mime from 'mime-types';
 
 const server = http.createServer((req, res) => {
     const url = req.url
@@ -54,7 +55,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({'ok': 'ok'}));
     } else {
         const file_path = "assets/" + url.substring(1)
-        const file_extension = url.substring(url.lastIndexOf(".") + 1)
+        const file_extension = url.substring(url.lastIndexOf("."))
 
         //     if the given file path is a file,then read the file
         fs.readFile(file_path, (err, data) => {
@@ -67,21 +68,12 @@ const server = http.createServer((req, res) => {
                     res.end("500 Internal Server Error")
                 }
             } else {
-                let content_type = "text/plain"
-                if (file_extension === "html") {
-                    content_type = "text/html"
-                } else if (file_extension === "css") {
-                    content_type = "text/css"
-                } else if (file_extension === "js") {
-                    content_type = "text/javascript"
-                } else if (file_extension === "jpg" || file_extension === "jpeg") {
-                    content_type = "image/jpeg"
-                } else if (file_extension === "png") {
-                    content_type = "image/png"
-                } else if (file_extension === "pdf") {
-                    content_type = "image/gif"
+                let content_type = mime.lookup(file_extension)
+                console.log(content_type)
+                if (content_type === false) {
+                    content_type = "text/plain"
                 }
-                res.writeHead(200, {"Content-Type": content_type + file_extension})
+                res.writeHead(200, {"Content-Type": content_type})
                 res.end(data)
             }
         })
