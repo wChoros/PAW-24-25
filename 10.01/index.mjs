@@ -1,13 +1,60 @@
 import * as http from "node:http"
 import * as fs from "node:fs"
 import mime from 'mime-types';
+import formidable from 'formidable'
 
 const server = http.createServer((req, res) => {
     const url = req.url
     console.log("url - " + url)
     if (url === "/") {
-        res.writeHead(200, {"Content-Type": "text/plain"})
-        res.end("Hello World")
+        res.write('<html lang="en">')
+        res.write('<head><title>Home Page</title></head>')
+        res.write("<body><form action='/handle-form' method='POST'><input type='text' name='name' placeholder='Name'><input type='text' name='surname' placeholder='Surname'><button type='submit'>Submit</button></form></body>")
+        res.write('</html>')
+        res.end()
+    } else if (url === "/img-form") {
+        res.write('<html lang="en">')
+        res.write('<head><title>Home Page</title></head>')
+        res.write("<body><form action='/file-upload' method='POST' enctype='multipart/form-data'><input type='file' name='image' placeholder='Image'><button type='submit'>Submit</button></form></body>")
+        res.write('</html>')
+        res.end()
+    } else if (url === "/file-upload") {
+        const form = formidable();
+        console.log(form);
+        form.parse(req, (err, fields, files) => {
+            const oldPath = files[0]
+
+            const newPath = 'assets/' + files.image.originalFilename;
+            fs.rename(oldPath, newPath, (err) => {
+                if (err) {
+                    res.writeHead(500, {'Content-Type': 'text/plain'});
+                    res.end('Error saving the file');
+                    return;
+                }
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                res.write('<html lang="en">');
+                res.write('<head><title>Home Page</title></head>');
+                res.write('<body><h1>File uploaded</h1></body>');
+                res.write('</html>');
+                res.end();
+            });
+        });
+    } else if (url === "/handle-form") {
+        let body = []
+        req.on('data', (chunk) => {
+            body.push(chunk)
+        }).on('end', () => {
+            body = Buffer.concat(body).toString()
+            console.log(body)
+            let name = body.split('&')[0].split('=')[1]
+            let surname = body.split('&')[1].split('=')[1]
+            res.writeHead(200, {"Content-Type": "text/html"})
+            res.write(`<html lang="en">`)
+            res.write(`<head><title>Form</title></head>`)
+            res.write(`<body><h1>Hello ${name} ${surname}</h1></body>`)
+            res.write(`</html>`)
+            res.end()
+        })
     } else if (url === "/json") {
         res.writeHead(200, {"Content-Type": "application/json"})
         let returning_json = {
