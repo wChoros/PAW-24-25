@@ -11,7 +11,7 @@ router.get('/contact-messages', function (req, res, next) {
 });
 
 router.get('/contact-messages/:id', function (req, res, next) {
-    connection.query('SELECT * FROM messages WHERE id = ?', req.params.id, function (error, results, fields) {
+    connection.query('SELECT * FROM messages WHERE id = ?', req.params.id, function (error, results) {
         if (error) throw error;
         if (results.length === 0) {
             return res.status(404).json({404: 'not_found'});
