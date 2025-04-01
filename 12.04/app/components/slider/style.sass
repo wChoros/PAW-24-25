@@ -1,0 +1,95 @@
+// Basic variables
+$primary-color: #3a86ff
+$dark-color: #333
+$light-color: #fff
+$gray-color: #ddd
+
+// Container for the entire slider
+.slider-container
+    max-width: 800px
+    margin: 0 auto
+    padding: 20px
+    font-family: Arial, sans-serif
+
+// Title styling
+.slider-title
+    font-size: 24px
+    color: $dark-color
+    text-align: center
+    margin-bottom: 20px
+
+// Main slider area
+.slider-main
+    position: relative
+    border: 3px solid $primary-color
+    border-radius: 50px
+    overflow: hidden
+    margin-bottom: 15px
+
+// Image styling
+.slider-image
+    display: block
+    width: 100%
+    height: auto
+
+// Caption for the current image
+.slider-caption
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: rgba(0, 0, 0, 0.1)
+    color: $light-color
+    padding: 10px
+    text-align: center
+
+// Navigation buttons (prev/next)
+.slider-nav
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    background-color: #fff
+    color: $light-color
+    border: none
+    width: 40px
+    height: 40px
+    font-size: 18px
+    cursor: pointer
+    color: #000
+    border-radius: 100%
+    
+    &:hover
+        background-color: $primary-color
+    
+    &.prev-button
+        left: 10px
+    
+    &.next-button
+        right: 10px
+
+// Dots navigation
+.slider-dots
+    display: flex
+    justify-content: center
+    gap: 10px
+    margin-top: 10px
+
+// Individual dot
+.slider-dot
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    background-color: $gray-color
+    border: none
+    padding: 0
+    cursor: pointer
+    
+    &.active
+        background-color: $primary-color
+        transform: scale(1.2)
+    
+    &:hover
+        background-color: $dark-color
+        &.active
+            background-color: $primary-color
+

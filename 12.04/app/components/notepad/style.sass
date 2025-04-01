@@ -1,0 +1,198 @@
+// Variables
+$primary-color: #4a6fa5
+$secondary-color: #6c757d
+$accent-color: #ff9a88
+
+$red-color: #e74c3c
+$green-color: #2ecc71
+$blue-color: #3498db
+$gray-color: #95a5a6
+
+$light-bg: #f8f9fa
+$dark-text: #333333
+$light-text: #ffffff
+
+$border-radius: 12px
+$box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1)
+$transition-speed: 0.3s
+
+// Mixins
+=flex-center
+    display: flex
+    justify-content: center
+    align-items: center
+
+=flex-between
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+// Base Styles
+.notepad-container
+    width: 100%
+    max-width: 800px
+    margin: 0 auto
+    padding: 2rem
+    font-family: 'Poppins', sans-serif
+    color: $dark-text
+
+.notepad-title
+    font-size: 2.5rem
+    font-weight: 700
+    margin-bottom: 1rem
+    text-align: center
+    color: $primary-color
+
+    &::after
+        content: ''
+        display: block
+        width: 50px
+        height: 4px
+        background-color: $accent-color
+        margin: 0.5rem auto 0
+        border-radius: 2px
+
+.notepad-description
+    text-align: center
+    margin-bottom: 2rem
+    color: $secondary-color
+    line-height: 1.5
+    max-width: 600px
+    margin-left: auto
+    margin-right: auto
+
+// Editor Styles
+.notepad-editor
+    border-radius: $border-radius
+    overflow: hidden
+    box-shadow: $box-shadow
+    margin-bottom: 1.5rem
+    transition: background-color $transition-speed ease-in-out
+
+.notepad-textarea
+    width: 100%
+    height: 250px
+    padding: 1.5rem
+    border: none
+    background-color: transparent
+    font-family: inherit
+    font-size: 1rem
+    line-height: 1.5
+    transition: color $transition-speed ease-in-out
+    resize: none
+
+    &:focus
+        outline: none
+
+    &::placeholder
+        opacity: 0.7
+
+// Controls Styles
+.notepad-controls
+    +flex-between
+    margin-bottom: 2rem
+
+.notepad-button
+    padding: 0.75rem 1.5rem
+    border: none
+    border-radius: $border-radius
+    font-weight: 600
+    cursor: pointer
+    transition: all $transition-speed
+
+    &.clear-button
+        background-color: $accent-color
+        color: $light-text
+
+        &:hover
+            background-color: #ff5b3e
+            transform: translateY(-2px)
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
+
+        &:active
+            transform: translateY(0)
+
+.notepad-count
+    font-weight: 500
+    color: $secondary-color
+
+// Analysis Styles
+.notepad-analysis
+    background-color: $light-bg
+    border-radius: $border-radius
+    padding: 1.5rem
+    box-shadow: $box-shadow
+
+.analysis-title
+    font-size: 1.5rem
+    font-weight: 600
+    margin-bottom: 1.5rem
+    color: $primary-color
+
+.analysis-grid
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+    gap: 1.5rem
+
+.analysis-column
+    display: flex
+    flex-direction: column
+    gap: 1.5rem
+
+.stat-container
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+
+.stat-label
+    font-weight: 500
+    font-size: 0.9rem
+    color: $secondary-color
+
+.stat-bar-container
+    width: 100%
+    height: 12px
+    background-color: rgba(0, 0, 0, 0.1)
+    border-radius: 6px
+    overflow: hidden
+
+.stat-bar
+    height: 100%
+    border-radius: 6px
+    transition: width $transition-speed ease-in-out
+
+    &.letters-bar
+        background-color: $red-color
+
+    &.numbers-bar
+        background-color: $green-color
+
+    &.special-bar
+        background-color: $blue-color
+
+    &.spaces-bar
+        background-color: $gray-color
+
+.stat-details
+    +flex-between
+    font-size: 0.85rem
+    color: $secondary-color
+
+// Responsive Adjustments
+@media (max-width: 768px)
+    .notepad-container
+        padding: 1rem
+
+    .notepad-title
+        font-size: 2rem
+
+    .notepad-controls
+        flex-direction: column
+        gap: 1rem
+        align-items: stretch
+
+    .notepad-count
+        text-align: center
+
+    .analysis-grid
+        grid-template-columns: 1fr
