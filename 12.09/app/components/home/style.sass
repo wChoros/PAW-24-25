@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')
+
+$primary-color: #1da1f2
+$secondary-color: #e8f5fe
+$text-color: #14171a
+$text-secondary: #657786
+$border-color: #e1e8ed
+$background-color: #ffffff
+$background-light: #f5f8fa
+
+
+.feed
+    .post
+        display: flex
+        padding: 15px
+        border-bottom: 1px solid $border-color
+        gap: 10px
+
+    .avatar
+        width: 48px
+        height: 48px
+        border-radius: 50%
+
+    .post-content
+        flex: 1
+
+        .post-header
+            margin-bottom: 5px
+
+        .username
+            font-weight: 700
+            margin-right: 5px
+
+        .handle, .timestamp, .category
+            color: $text-secondary
+            margin-right: 5px
+
+        .category
+            a
+                color: $primary-color
+                text-decoration: none
+
+
+        .post-title
+            font-weight: 700
+            margin-bottom: 5px
+            
+            a
+                text-decoration: none
+                color: black
+
+        .post-text
+            margin-bottom: 10px
+            line-height: 1.4
+
+        .post-actions
+            display: flex
+            justify-content: space-between
+            max-width: 425px
+
+        button
+            display: flex
+            align-items: center
+            gap: 5px
+            background: none
+            border: none
+            color: $text-secondary
+            cursor: pointer
+            padding: 8px
+            border-radius: 50%
+            transition: background-color 0.2s, color 0.2s
+
+            &:hover
+                background-color: rgba($primary-color, 0.1)
+                color: $primary-color
+
+            .icon
+                font-size: 16px
+
+        .comments
+            margin-top: 15px
+            border-top: 1px solid $border-color
+            padding-top: 15px
+
+        .comment
+            display: flex
+            gap: 10px
+            margin-bottom: 15px
+
+            .avatar
+                width: 40px
+                height: 40px
+                border-radius: 50%
+
+            .comment-content
+                flex: 1
+
+            .comment-header
+                margin-bottom: 5px
+
+                .username
+                    font-weight: 700
+                    margin-right: 5px
+
+                .handle, .timestamp
+                    color: $text-secondary
+                    margin-right: 5px
+                    font-size: 14px
+
+            .comment-text
+                margin-bottom: 5px
+                line-height: 1.4
+
+            .comment-actions
+                display: flex
+                gap: 20px
+
+                button
+                    display: flex
+                    align-items: center
+                    gap: 5px
+                    background: none
+                    border: none
+                    color: $text-secondary
+                    cursor: pointer
+                    font-size: 14px
+                    padding: 5px
+                    transition: color 0.2s
+
+                &:hover
+                    color: $primary-color
+
+        .add-comment
+            display: flex
+            gap: 10px
+            align-items: center
+            margin-top: 10px
+
+            img
+                width: 40px
+                height: 40px
+                border-radius: 50%
+
+            input
+                flex: 1
+                border: 1px solid $border-color
+                border-radius: 20px
+                padding: 8px 15px
+                font-size: 14px
+
+            &:focus
+                outline: none
+                border-color: $primary-color
+
+            button
+                background-color: $primary-color
+                color: white
+                border: none
+                border-radius: 20px
+                padding: 5px 15px
+                font-weight: 700
+                font-size: 14px
+                cursor: pointer
+
+                &:hover
+                    background-color: darken($primary-color, 10%)
