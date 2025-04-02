@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.sass';
 
 interface Category {
@@ -7,53 +7,24 @@ interface Category {
 }
 
 const SinglePost: React.FC = () => {
-    const categories: Category[] = [
-        {
-            id: 1,
-            name: "Programming"
-        },
-        {
-            id: 2,
-            name: "Technology"
-        },
-        {
-            id: 3,
-            name: "Science"
-        },
-        {
-            id: 4,
-            name: "Health"
-        },
-        {
-            id: 5,
-            name: "Travel"
-        },
-        {
-            id: 6,
-            name: "Education"
-        },
-        {
-            id: 7,
-            name: "Sports"
-        },
-        {
-            id: 8,
-            name: "Music"
-        },
-        {
-            id: 9,
-            name: "Movies"
-        },
-        {
-            id: 10,
-            name: "Art"
-        },
-        {
-            id: 11,
-            name: "Gaming"
-        }
-    ];
+    const [categories, setCategories] = useState<Category[]>([]);
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch('http://localhost:2115/categories/');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch categories');
+                }
+                const data: Category[] = await response.json();
+                setCategories(data);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     return (
         <div className='categories-view'>
