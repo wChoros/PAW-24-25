@@ -1,3 +1,7 @@
+__copyright__ = "Zespół Szkół Komunikacji"
+__author__ = "Wojciech Choroś 4D"
+
+
 class Teacher:
     _id: int
     name: str

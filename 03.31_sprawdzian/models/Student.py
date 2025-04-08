@@ -1,5 +1,9 @@
 from datetime import date
 
+__copyright__ = "Zespół Szkół Komunikacji"
+__author__ = "Wojciech Choroś 4D"
+
+
 class Student:
     _id: int
     first_name: str

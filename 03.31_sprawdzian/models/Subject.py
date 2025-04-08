@@ -1,5 +1,8 @@
 from models.Teacher import Teacher
 
+__copyright__ = "Zespół Szkół Komunikacji"
+__author__ = "Wojciech Choroś 4D"
+
 
 class Subject:
     id: int

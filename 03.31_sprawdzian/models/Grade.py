@@ -1,15 +1,19 @@
 from models.Student import Student
 from models.Subject import Subject
 
+__copyright__ = "Zespół Szkół Komunikacji"
+__author__ = "Wojciech Choroś 4D"
+
 
 class Grade:
-    grades: list[int] = []
+    grades: list[int]
     student: Student
     subject: Subject
 
     def __init__(self, student: Student, subject: Subject) -> None:
         self.student = student
         self.subject = subject
+        self.grades = []
 
     def add_grade(self, value: int) -> None:
         if type(value) is not int:
