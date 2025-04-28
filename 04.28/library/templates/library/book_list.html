@@ -1,0 +1,14 @@
+{% extends 'library/base.html' %}
+
+{% block title %}Lista książek{% endblock %}
+
+{% block content %}
+<h1>Lista książek</h1>
+<ul>
+    {% for book in books %}
+        <li><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></li>
+    {% empty %}
+        <li>Brak książek w bazie.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

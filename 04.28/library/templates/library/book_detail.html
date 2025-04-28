@@ -1,0 +1,10 @@
+{% extends 'library/base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p><strong>Data publikacji:</strong> {{ book.publication_date }}</p>
+<p><strong>Autorzy:</strong> {{ book.authors.all|join:", " }}</p>
+<a href="{% url 'book_list' %}">← Powrót do listy</a>
+{% endblock %}
